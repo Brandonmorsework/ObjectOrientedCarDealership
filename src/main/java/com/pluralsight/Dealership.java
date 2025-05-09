@@ -9,13 +9,13 @@ public class Dealership {
     private String address;
     private String phone;
 
-    private ArrayList<Vehicle> vehicle;
+    private ArrayList<Vehicle> vehicles;
 
     public Dealership(String name, String address, String phone) {
         this.name = name;
         this.address = address;
         this.phone = phone;
-        this.vehicle = new ArrayList<>();
+        this.vehicles = new ArrayList<>();
     }
 
 
@@ -47,56 +47,55 @@ public class Dealership {
     public ArrayList<Vehicle> getVehiclesByPrice(double minPrice, double maxPrice) {
 
 
-
+        return null;
     }
 
 
     public ArrayList<Vehicle> getVehiclesByMake(String make) {
 
 
-
+        return null;
     }
 
     public ArrayList<Vehicle> getVehiclesByYear(int minYear, int maxYear) {
 
 
-
+        return null;
     }
 
     public ArrayList<Vehicle> getVehiclesByColor(String color) {
 
 
-
+        return null;
     }
 
     public ArrayList<Vehicle> getVehiclesByMileage(int minMileage, int maxMileage) {
 
 
-
+        return null;
     }
 
     public ArrayList<Vehicle> getVehiclesByType(String vehicleType) {
 
 
-
+        return null;
     }
 
     public ArrayList<Vehicle> getAllVehicles() {
 
-
+        return vehicles;
 
     }
 
     public boolean addVehicle(Vehicle vehicle) {
 
-
-
+        return vehicles.add(vehicle);
     }
 
     public boolean removeVehicle(Vehicle vehicle) {
 
 
-
+        return vehicles.remove(vehicle);
     }
 
 }
