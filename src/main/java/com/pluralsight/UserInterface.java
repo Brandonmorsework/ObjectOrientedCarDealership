@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -86,6 +87,23 @@ public class UserInterface {
 
     }
 
+    private void displayVehicles(ArrayList<Vehicle> vehicles) {
+
+        if (vehicles.isEmpty()) {
+
+            System.out.println("No Vehicles Found...");
+
+        } else {
+
+            for (Vehicle vehicle : vehicles) {
+                System.out.printf("%-12s | %-10s | %-30s | %-20s | %-20s | %-20s | %-20s | $%10.2f\n", vehicle.getVin(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(), vehicle.getVehicleType(), vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
+            }
+        }
+    }
+
+
+
+
 
     public void processGetByPriceRequest() {
 
@@ -112,6 +130,10 @@ public class UserInterface {
     }
 
     public void processGetAllVehiclesRequest() {
+
+       ArrayList<Vehicle> vehicles = dealership.getAllVehicles();
+
+        displayVehicles(vehicles);
 
     }
 
