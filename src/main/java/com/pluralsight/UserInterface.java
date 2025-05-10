@@ -141,28 +141,60 @@ public class UserInterface {
 
         Scanner scanner = new Scanner(System.in);
 
-        int vin;
-        int year;
-        String make;
-        String model;
-        String vehicleType;
-        String color;
-        int odometer;
-        double price;
+        int vin = 0;
+        int year = 0;
+        String make = null;
+        String model = null;
+        String vehicleType = null;
+        String color = null;
+        int odometer = 0;
+        double price = 0.0;
 
-        /*while (vin == null) {
+        while (vin == 0) {
             try {
-                System.out.println("(1 / 8) Please enter the 5 digit Vehicle Identification Number");
+                System.out.println("(1 / 8) Please Enter The 5 Digit Vehicle Identification Number");
+                int userVinInput = scanner.nextInt();
+
+                if (userVinInput >= 10000 && userVinInput <= 99999) {
+                    vin = userVinInput;
+                } else {
+
+                System.out.println("The VIN Must Be a Value Between 10000 and 99999!");
+
+                }
+
             } catch (Exception e) {
 
+                System.out.println("Invalid! Please Enter a 5-Digit VIN");
+                scanner.nextLine();
             }
+        }
 
+        while (year == 0) {
+            try {
+                System.out.println("(2 / 8) Please Enter The Year of The Vehicle");
+                int userVinInput = scanner.nextInt();
+
+                if (userVinInput >= 1885 && userVinInput <= 2025) {
+                    vin = userVinInput;
+                } else {
+
+                    System.out.println("The Year Must Be a Value Between 1885 and 2025!");
+
+                }
+
+            } catch (Exception e) {
+
+                System.out.println("Invalid! Please Enter a 4 Digit Year Value");
+                scanner.nextLine();
+            }
         }
 
 
 
 
-        Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);*/
+
+        Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
 
     }
 
