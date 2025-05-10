@@ -6,18 +6,13 @@ import java.util.ArrayList;
 
 public class DealershipFileManager {
 
-
-    //???
-
-    //???
-
-
-
     public Dealership getDealership(String fileName) {
 
         ArrayList<Vehicle> vehicles = new ArrayList<>();
 
         String line;
+
+        Dealership dealership = null;
 
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
@@ -48,13 +43,22 @@ public class DealershipFileManager {
 
             br.close();
 
+            dealership = new Dealership(dealerName, dealerAddress, dealerPhone);
+            for (Vehicle vehicle : vehicles) {
+                dealership.addVehicle(vehicle);
+            }
+
         } catch (Exception e) {
 
             System.out.println("Error, File Not Found!");
         }
 
+        return dealership;
+
     }
 
+    public void saveDealership(String fileName) {
 
+    }
 
 }

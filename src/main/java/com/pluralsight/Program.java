@@ -8,10 +8,10 @@ public class Program {
 
     public static void main(String[] args) {
 
-        getDealership(FILE_NAME);
+        /*getDealership(FILE_NAME);
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
-
+*/
 
 
     }
