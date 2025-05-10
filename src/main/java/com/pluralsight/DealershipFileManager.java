@@ -1,8 +1,11 @@
 package com.pluralsight;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class DealershipFileManager {
 
@@ -20,9 +23,9 @@ public class DealershipFileManager {
             String dealershipHeader = br.readLine();
             String[] headerParts = dealershipHeader.split("\\|");
 
-            String dealerName = headerParts[0];
-            String dealerAddress = headerParts[1];
-            String dealerPhone = headerParts[2];
+            String name = headerParts[0];
+            String address = headerParts[1];
+            String phone = headerParts[2];
 
 
             while ((line = br.readLine()) != null) {
@@ -43,7 +46,7 @@ public class DealershipFileManager {
 
             br.close();
 
-            dealership = new Dealership(dealerName, dealerAddress, dealerPhone);
+            dealership = new Dealership(name, address, phone);
             for (Vehicle vehicle : vehicles) {
                 dealership.addVehicle(vehicle);
             }
@@ -57,7 +60,25 @@ public class DealershipFileManager {
 
     }
 
-    public void saveDealership(String fileName) {
+    public void saveDealership(Dealership dealership, String fileName) {
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+
+            writer.write(dealership.getName() + "|" + dealership.getAddress() + "|" + dealership.getPhone());
+            writer.newLine();
+
+            for (Vehicle vehicle : dealership.getAllVehicles()) {
+                writer.write(vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" + vehicle.getModel() + "|" + vehicle.getVehicleType() + "|" + vehicle.getColor() + "|" + vehicle.getOdometer() + "|" + vehicle.getPrice());
+                writer.newLine();
+            }
+
+            System.out.println("Dealership Entries Successfully Saved!");
+
+            } catch(Exception e) {
+
+                System.out.println("Error Writing These Entries to File");
+
+            }
 
     }
 

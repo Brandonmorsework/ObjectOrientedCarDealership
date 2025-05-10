@@ -139,6 +139,31 @@ public class UserInterface {
 
     public void processAddVehicleRequest() {
 
+        Scanner scanner = new Scanner(System.in);
+
+        int vin;
+        int year;
+        String make;
+        String model;
+        String vehicleType;
+        String color;
+        int odometer;
+        double price;
+
+        /*while (vin == null) {
+            try {
+                System.out.println("(1 / 8) Please enter the 5 digit Vehicle Identification Number");
+            } catch (Exception e) {
+
+            }
+
+        }
+
+
+
+
+        Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);*/
+
     }
 
     public void processRemoveVehicleRequest() {
