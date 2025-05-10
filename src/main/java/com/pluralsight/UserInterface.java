@@ -4,17 +4,17 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-
-
-
     private Dealership dealership;
 
     public void display() {
+
+        init();
 
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
         while (running) {
+
             System.out.println(" ");
             System.out.println("Welcome to the Car Dealership!");
             System.out.println(" ");
@@ -29,7 +29,7 @@ public class UserInterface {
             System.out.println("Press '7' to List All Vehicles");
             System.out.println("Press '8' to Add a Vehicle to The Dealership");
             System.out.println("Press '9' to Remove a Vehicle From The Dealership");
-            System.out.println("Press '0' to Quit");
+            System.out.println("Press '99' to Quit");
 
             String userInput = scanner.nextLine().trim();
 
@@ -61,7 +61,7 @@ public class UserInterface {
                 case "9":
                     processRemoveVehicleRequest();
                     break;
-                case "0":
+                case "99":
                     System.out.println("Thank You For Using the Car Dealership, Goodbye!");
                     running = false;
                     break;
@@ -83,6 +83,7 @@ public class UserInterface {
 
         DealershipFileManager dealershipFileManager = new DealershipFileManager();
         this.dealership = dealershipFileManager.getDealership(FILE_NAME);
+
     }
 
 
