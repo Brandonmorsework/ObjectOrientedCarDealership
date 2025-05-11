@@ -14,6 +14,7 @@ public class UserInterface {
         init();
 
 
+
         boolean running = true;
 
         while (running) {
@@ -36,7 +37,7 @@ public class UserInterface {
 
             String userInput = scanner.nextLine().trim();
 
-            switch (userInput.toUpperCase()) {
+            switch (userInput) {
                 case "1":
                     processGetByPriceRequest();
                     break;
@@ -137,9 +138,6 @@ public class UserInterface {
     }
 
     public void processAddVehicleRequest() {
-
-
-
 
         int vin = 0;
         int year = 0;
