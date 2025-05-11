@@ -5,13 +5,15 @@ import java.util.Scanner;
 
 public class UserInterface {
 
+    private final String fileName = "Vehicles.csv";
     private Dealership dealership;
+    Scanner scanner = new Scanner(System.in);
 
     public void display() {
 
         init();
 
-        Scanner scanner = new Scanner(System.in);
+
         boolean running = true;
 
         while (running) {
@@ -80,10 +82,10 @@ public class UserInterface {
 
     private void init() {
 
-        String FILE_NAME = "Vehicles.csv";
+        String fileName = "Vehicles.csv";
 
         DealershipFileManager dealershipFileManager = new DealershipFileManager();
-        this.dealership = dealershipFileManager.getDealership(FILE_NAME);
+        this.dealership = dealershipFileManager.getDealership(fileName);
 
     }
 
@@ -136,7 +138,8 @@ public class UserInterface {
 
     public void processAddVehicleRequest() {
 
-        Scanner scanner = new Scanner(System.in);
+
+
 
         int vin = 0;
         int year = 0;
@@ -255,7 +258,7 @@ public class UserInterface {
 
             } catch (Exception e) {
 
-                System.out.println("Invalid! Please Enter a Number Between 0 and 999999!");
+                System.out.println("Invalid! Please Enter a Number Between 1 and 999999!");
                 scanner.nextLine();
             }
         }
@@ -266,13 +269,21 @@ public class UserInterface {
                 price = scanner.nextDouble();
                 scanner.nextLine();
 
-                if (price == 0) {
-                    System.out.println("Price of The Vehicle Cannot be $0!!!");
+                if (price <= 0) {
+                    System.out.println("Price of The Vehicle Cannot be $0 or less!!!");
                     price = 0.0;
                 }
         }
 
+        DealershipFileManager dealershipFileManager = new DealershipFileManager();
 
+        Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+
+        dealership.addVehicle(vehicle);
+
+        dealershipFileManager.saveDealership(dealership, fileName);
+
+        System.out.println("Vehicles Updated!");
 
     }
 
