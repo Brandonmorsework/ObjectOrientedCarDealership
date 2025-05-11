@@ -102,9 +102,6 @@ public class UserInterface {
     }
 
 
-
-
-
     public void processGetByPriceRequest() {
 
     }
@@ -131,7 +128,7 @@ public class UserInterface {
 
     public void processGetAllVehiclesRequest() {
 
-       ArrayList<Vehicle> vehicles = dealership.getAllVehicles();
+        ArrayList<Vehicle> vehicles = dealership.getAllVehicles();
 
         displayVehicles(vehicles);
 
@@ -152,14 +149,15 @@ public class UserInterface {
 
         while (vin == 0) {
             try {
-                System.out.println("(1 / 8) Please Enter The 5 Digit Vehicle Identification Number");
+                System.out.println("(1 / 8) Please Enter The 5 Digit Vehicle Identification Number:");
                 int userVinInput = scanner.nextInt();
+                scanner.nextLine();
 
                 if (userVinInput >= 10000 && userVinInput <= 99999) {
                     vin = userVinInput;
                 } else {
 
-                System.out.println("The VIN Must Be a Value Between 10000 and 99999!");
+                    System.out.println("The VIN Must Be a Value Between 10000 and 99999!");
 
                 }
 
@@ -172,11 +170,12 @@ public class UserInterface {
 
         while (year == 0) {
             try {
-                System.out.println("(2 / 8) Please Enter The Year of The Vehicle");
-                int userVinInput = scanner.nextInt();
+                System.out.println("(2 / 8) Please Enter The Year of The Vehicle:");
+                int userYearInput = scanner.nextInt();
+                scanner.nextLine();
 
-                if (userVinInput >= 1885 && userVinInput <= 2025) {
-                    vin = userVinInput;
+                if (userYearInput >= 1885 && userYearInput <= 2025) {
+                    year = userYearInput;
                 } else {
 
                     System.out.println("The Year Must Be a Value Between 1885 and 2025!");
@@ -191,15 +190,95 @@ public class UserInterface {
         }
 
 
+        while (make == null || make.trim().isEmpty()) {
+
+            System.out.println("(3 / 8) Please Enter The Make of The Vehicle:");
+            make = scanner.nextLine().trim();
+
+            if (make.isEmpty()) {
+                System.out.println("Make Should Not be Empty!");
+                make = null;
+
+            }
+        }
+
+        while (model == null || model.trim().isEmpty()) {
+
+            System.out.println("(4 / 8) Please Enter The Model of The Vehicle:");
+            model = scanner.nextLine().trim();
+
+            if (model.isEmpty()) {
+
+                System.out.println("Model Should Not be Empty!");
+                model = null;
+
+            }
+        }
+
+        while (vehicleType == null || vehicleType.trim().isEmpty()) {
+
+            System.out.println("(5 / 8) Please Enter The Type of Vehicle:");
+            vehicleType = scanner.nextLine().trim();
+
+            if (vehicleType.isEmpty()) {
+                System.out.println("Vehicle Type Cannot be Empty!");
+                vehicleType = null;
+
+                }
+            }
+
+            while (color == null || color.trim().isEmpty()) {
+
+                System.out.println("(6 / 8) Please Enter The Color of The Vehicle");
+                color = scanner.nextLine().trim();
+
+                if (color.isEmpty()) {
+                    System.out.println("Color Cannot be Empty!");
+                    color = null;
+                }
+            }
+
+        while (odometer == 0) {
+            try {
+                System.out.println("(7 / 8) Please Enter The Number of Miles The Vehicle Has:");
+                int userOdometerInput = scanner.nextInt();
+                scanner.nextLine();
+
+                if (userOdometerInput >= 1 && userOdometerInput <= 999999) {
+                    odometer = userOdometerInput;
+
+                } else {
+
+                    System.out.println("The Mileage Must Be a Value Between 1 and 99999!");
+
+                }
+
+            } catch (Exception e) {
+
+                System.out.println("Invalid! Please Enter a Number Between 0 and 999999!");
+                scanner.nextLine();
+            }
+        }
+
+        while (price == 0.0) {
+
+                System.out.println("(8 / 8) Please Enter The Price of The Vehicle:");
+                price = scanner.nextDouble();
+                scanner.nextLine();
+
+                if (price == 0) {
+                    System.out.println("Price of The Vehicle Cannot be $0!!!");
+                    price = 0.0;
+                }
+        }
 
 
-
-        Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
 
     }
 
-    public void processRemoveVehicleRequest() {
+        public void processRemoveVehicleRequest () {
 
-    }
+        }
+
 
 }
