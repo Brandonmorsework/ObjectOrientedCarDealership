@@ -135,6 +135,30 @@ public class UserInterface {
 
     public void processGetByYearRequest() {
 
+        System.out.println("Please Enter the Earliest Year of the Vehicle:");
+        int minYear = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Please Enter the Latest Year of the Vehicle:");
+        int maxYear = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println(" ");
+
+        List<Vehicle> availableVehicles = dealership.getVehiclesByYear(minYear, maxYear);
+
+        if (availableVehicles.isEmpty()) {
+            System.out.println("No Vehicles With This Year Range Found...");
+
+        } else {
+            System.out.printf("Here Are The Available Vehicles Between: " + minYear + " and " + maxYear);
+            System.out.println(" ");
+            /*System.out.printf("%-12s %-10s %-35s %-30s %-30s %-30s %-30s %-10s\n", "VIN" , "Year", "Make", "Model", "Vehicle Type", "Color", "Odometer", "Price");*/
+            System.out.println(" ");
+
+            for (Vehicle vehicle : availableVehicles) {
+                System.out.printf("%-12s | %-10s | %-30s | %-20s | %-20s | %-20s | %-20s | $%10.2f\n", vehicle.getVin(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(), vehicle.getVehicleType(), vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
+
+            }
+        }
     }
 
     public void processGetByColorRequest() {
@@ -142,6 +166,33 @@ public class UserInterface {
     }
 
     public void processGetByMileageRequest() {
+
+        System.out.println("Please Enter the Least Amount of Mileage of the Vehicle:");
+        int minMileage = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Please Enter the Most Amount of Mileage of the Vehicle:");
+        int maxMileage = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println(" ");
+
+        List<Vehicle> availableVehicles = dealership.getVehiclesByMileage(minMileage, maxMileage);
+
+        if (availableVehicles.isEmpty()) {
+            System.out.println("No Vehicles With This Mileage Range Found...");
+            System.out.println("Returning Home...");
+
+        } else {
+            System.out.printf("Here Are The Available Vehicles With Mileages Between: " + minMileage + " and " + maxMileage);
+            System.out.println(" ");
+            /*System.out.printf("%-12s %-10s %-35s %-30s %-30s %-30s %-30s %-10s\n", "VIN" , "Year", "Make", "Model", "Vehicle Type", "Color", "Odometer", "Price");*/
+            System.out.println(" ");
+
+            for (Vehicle vehicle : availableVehicles) {
+                System.out.printf("%-12s | %-10s | %-30s | %-20s | %-20s | %-20s | %-20s | $%10.2f\n", vehicle.getVin(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(), vehicle.getVehicleType(), vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
+
+            }
+        }
+
 
     }
 
