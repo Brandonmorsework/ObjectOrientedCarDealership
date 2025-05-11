@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -12,8 +13,6 @@ public class UserInterface {
     public void display() {
 
         init();
-
-
 
         boolean running = true;
 
@@ -107,6 +106,27 @@ public class UserInterface {
 
     public void processGetByPriceRequest() {
 
+        System.out.println("Please Enter the Minimum Price of the Vehicle:");
+        double minPrice = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.println("Please Enter the Maximum Price of the Vehicle:");
+        double maxPrice = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.println(" ");
+
+        List<Vehicle> availableVehicles = dealership.getVehiclesByPrice(minPrice, maxPrice);
+
+        if (availableVehicles.isEmpty()) {
+            System.out.println("No Vehicles With This Price Range Found...");
+
+        } else {
+            System.out.printf("Here Are The Available Vehicles Between $%.2f and $%.2f%n", minPrice, maxPrice);
+            System.out.println(" ");
+            for (Vehicle vehicle : availableVehicles) {
+                System.out.printf("%-12s | %-10s | %-30s | %-20s | %-20s | %-20s | %-20s | $%10.2f\n", vehicle.getVin(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(), vehicle.getVehicleType(), vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
+
+            }
+        }
     }
 
     public void processGetByMakeModelRequest() {

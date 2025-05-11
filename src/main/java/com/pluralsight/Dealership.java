@@ -46,8 +46,15 @@ public class Dealership {
 
     public List<Vehicle> getVehiclesByPrice(double minPrice, double maxPrice) {
 
+        List<Vehicle> availableVehicles = new ArrayList<>();
 
-        return null;
+        for (Vehicle vehicle : vehicles) {
+            double price = vehicle.getPrice();
+            if (price >= minPrice && price <= maxPrice) {
+                availableVehicles.add(vehicle);
+            }
+        }
+        return availableVehicles;
     }
 
 
