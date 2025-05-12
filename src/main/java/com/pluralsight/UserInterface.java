@@ -131,6 +131,25 @@ public class UserInterface {
 
     public void processGetByMakeModelRequest() {
 
+        System.out.println("Please Enter the Make of the Vehicle:");
+        String make = scanner.nextLine();
+
+        System.out.println("Please Enter the Model of the Vehicle:");
+        String model = scanner.nextLine();
+        System.out.println(" ");
+
+        List<Vehicle> availableVehicles = dealership.getVehiclesByMakeModel(make, model);
+
+        if (availableVehicles.isEmpty()) {
+            System.out.println("No Vehicles With This Price Range Found...");
+
+        } else {
+            System.out.printf("Here Are The Available Vehicles with the Make of " + make + " and Model "+ model);
+            System.out.println(" ");
+            for (Vehicle vehicle : availableVehicles) {
+                System.out.printf("%-12s | %-10s | %-30s | %-20s | %-20s | %-20s | %-20s | $%10.2f\n", vehicle.getVin(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(), vehicle.getVehicleType(), vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
+            }
+        }
     }
 
     public void processGetByYearRequest() {
@@ -163,6 +182,21 @@ public class UserInterface {
 
     public void processGetByColorRequest() {
 
+        System.out.println("Please Enter the Color of the Vehicle:");
+        String color = scanner.nextLine();
+
+        List<Vehicle> availableVehicles = dealership.getVehiclesByColor(color);
+
+        if (availableVehicles.isEmpty()) {
+            System.out.println("No Vehicles With This Color Found...");
+
+        } else {
+            System.out.println("Here Are The Available Vehicles in the Color " + color);
+            System.out.println(" ");
+            for (Vehicle vehicle : availableVehicles) {
+                System.out.printf("%-12s | %-10s | %-30s | %-20s | %-20s | %-20s | %-20s | $%10.2f\n", vehicle.getVin(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(), vehicle.getVehicleType(), vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
+            }
+        }
     }
 
     public void processGetByMileageRequest() {
@@ -182,7 +216,7 @@ public class UserInterface {
             System.out.println("Returning Home...");
 
         } else {
-            System.out.printf("Here Are The Available Vehicles With Mileages Between: " + minMileage + " and " + maxMileage);
+            System.out.println("Here Are The Available Vehicles With Mileages Between: " + minMileage + " and " + maxMileage);
             System.out.println(" ");
             /*System.out.printf("%-12s %-10s %-35s %-30s %-30s %-30s %-30s %-10s\n", "VIN" , "Year", "Make", "Model", "Vehicle Type", "Color", "Odometer", "Price");*/
             System.out.println(" ");
@@ -197,6 +231,22 @@ public class UserInterface {
     }
 
     public void processGetByVehicleTypeRequest() {
+
+        System.out.println("Please Enter the Type of the Vehicle:");
+        String vehicleType = scanner.nextLine();
+
+        List<Vehicle> availableVehicles = dealership.getVehiclesByType(vehicleType);
+
+        if (availableVehicles.isEmpty()) {
+            System.out.println("No Vehicles With This Type Found...");
+
+        } else {
+            System.out.println("Here Are The Available Vehicles in the " + vehicleType + " Category");
+            System.out.println(" ");
+            for (Vehicle vehicle : availableVehicles) {
+                System.out.printf("%-12s | %-10s | %-30s | %-20s | %-20s | %-20s | %-20s | $%10.2f\n", vehicle.getVin(), vehicle.getYear(), vehicle.getMake(), vehicle.getModel(), vehicle.getVehicleType(), vehicle.getColor(), vehicle.getOdometer(), vehicle.getPrice());
+            }
+        }
 
     }
 
@@ -352,11 +402,47 @@ public class UserInterface {
 
         dealershipFileManager.saveDealership(dealership, fileName);
 
-        System.out.println("Vehicles Updated!");
+        System.out.println("Vehicle Added!");
 
     }
 
         public void processRemoveVehicleRequest () {
+
+            int vin = 0;
+
+
+            while (vin == 0) {
+                try {
+                    System.out.println("(1 / 8) Please Enter The 5 Digit Vehicle Identification Number:");
+                    int userVinInput = scanner.nextInt();
+                    scanner.nextLine();
+
+                    if (userVinInput >= 10000 && userVinInput <= 99999) {
+                        vin = userVinInput;
+                    } else {
+
+                        System.out.println("The VIN Must Be a Value Between 10000 and 99999!");
+
+                    }
+
+                } catch (Exception e) {
+
+                    System.out.println("Invalid! Please Enter a 5-Digit VIN");
+                    scanner.nextLine();
+                }
+            }
+
+
+
+            DealershipFileManager dealershipFileManager = new DealershipFileManager();
+
+            Vehicle vehicleRemoval = dealership.getVehiclesByVin(vin);
+
+            dealership.removeVehicle(vehicleRemoval);
+
+            dealershipFileManager.saveDealership(dealership, fileName);
+
+            System.out.println("Vehicle Removed!");
 
         }
 
