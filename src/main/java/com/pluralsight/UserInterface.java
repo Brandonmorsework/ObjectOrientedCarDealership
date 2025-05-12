@@ -82,7 +82,7 @@ public class UserInterface {
 
     private void init() {
 
-        String fileName = "Vehicles.csv";
+
 
         DealershipFileManager dealershipFileManager = new DealershipFileManager();
         this.dealership = dealershipFileManager.getDealership(fileName);
@@ -400,9 +400,12 @@ public class UserInterface {
 
         dealership.addVehicle(vehicle);
 
+        System.out.println("Vehicle Added!");
+        System.out.println(" ");
+
         dealershipFileManager.saveDealership(dealership, fileName);
 
-        System.out.println("Vehicle Added!");
+
 
     }
 
@@ -442,12 +445,12 @@ public class UserInterface {
 
             DealershipFileManager dealershipFileManager = new DealershipFileManager();
 
+            System.out.println("Vehicle Removed!");
+            System.out.println(" ");
 
             dealershipFileManager.saveDealership(dealership, fileName);
 
-            System.out.println("Vehicle Removed!");
+
 
         }
-
-
 }
