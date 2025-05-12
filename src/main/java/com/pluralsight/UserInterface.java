@@ -413,7 +413,7 @@ public class UserInterface {
 
             while (vin == 0) {
                 try {
-                    System.out.println("(1 / 8) Please Enter The 5 Digit Vehicle Identification Number:");
+                    System.out.println("Please Enter The 5 Digit Vehicle Identification Number:");
                     int userVinInput = scanner.nextInt();
                     scanner.nextLine();
 
@@ -422,9 +422,7 @@ public class UserInterface {
                     } else {
 
                         System.out.println("The VIN Must Be a Value Between 10000 and 99999!");
-
                     }
-
                 } catch (Exception e) {
 
                     System.out.println("Invalid! Please Enter a 5-Digit VIN");
@@ -432,13 +430,18 @@ public class UserInterface {
                 }
             }
 
+        List<Vehicle> matchingVehicles = dealership.getVehiclesByVin(vin);
 
+            if (!matchingVehicles.isEmpty()) {
+                Vehicle vehicleToBeRemoved = matchingVehicles.get(0);
+                dealership.removeVehicle(vehicleToBeRemoved);
+
+            } else {
+                System.out.println("No Vehicle With the VIN: " + vin + " Found...");
+            }
 
             DealershipFileManager dealershipFileManager = new DealershipFileManager();
 
-            Vehicle vehicleRemoval = dealership.getVehiclesByVin(vin);
-
-            dealership.removeVehicle(vehicleRemoval);
 
             dealershipFileManager.saveDealership(dealership, fileName);
 
