@@ -141,7 +141,7 @@ public class UserInterface {
         List<Vehicle> availableVehicles = dealership.getVehiclesByMakeModel(make, model);
 
         if (availableVehicles.isEmpty()) {
-            System.out.println("No Vehicles With This Price Range Found...");
+            System.out.println("No Vehicles With This Make/Model Found...");
 
         } else {
             System.out.printf("Here Are The Available Vehicles with the Make of " + make + " and Model "+ model);
@@ -218,7 +218,7 @@ public class UserInterface {
         } else {
             System.out.println("Here Are The Available Vehicles With Mileages Between: " + minMileage + " and " + maxMileage);
             System.out.println(" ");
-            /*System.out.printf("%-12s %-10s %-35s %-30s %-30s %-30s %-30s %-10s\n", "VIN" , "Year", "Make", "Model", "Vehicle Type", "Color", "Odometer", "Price");*/
+
             System.out.println(" ");
 
             for (Vehicle vehicle : availableVehicles) {
